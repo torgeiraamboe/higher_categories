@@ -1,0 +1,269 @@
+
+\subsection{Motivasjon}
+
+Ofte når noe har prefiksen ``kvasi'' betyr det at de nesten er noe vi kjenner til, eller at de i det minste er relatert til de på en fin måte. 
+Så med den logikken burde kvasikategorier enten nesten være kategorier, eller hvertfall være relatert til de på en fin måte. 
+Foredraget handler jo også om høyere kategorier, så dette burde kanskje komme inn i bildet. 
+
+Det er litt ambiguitivt hva man mener når man bruker ordet ``høyere'' i sammenheng med kategoriteori. 
+Ofte så mener man høyere som i ``høyere dimensjon'', men dette skal vi se at er komplisert. 
+
+Uansett hva vi mener så burde vi først se på objektene vi ønsker å generalisere.
+
+\section{Kategorier}
+
+Det finnes flere ulike måter å definere en kategori på, men vi skal se på tre av de mest kjente. 
+
+\begin{definition}
+    En kategori $C$ består av
+    \begin{itemize}
+        \item en samling med objekter $Ob(C)$,
+        \item en samling med morfier $C(X,Y)$ for alle objekter $X$ og $Y$ og
+        \item for alle tripler av objekter $X, Y, Z$ en binæroperasjon $\circ : C(Y, Z)\times C(X, Y) \longrightarrow C(X, Z)$ kalt komposisjon,
+    \end{itemize}
+    slik at
+    \begin{itemize}
+        \item komposisjon er en assosiativ binæroperasjon
+        \item for alle objekter $X$ finnes det en morfi $1_X$, kalt identitetsmorfien, slik at $f \circ 1_X = f$ og $1_x\circ g = g$ for alle morfier $f\in C(X, Y)$ og $g\in C(Y,X)$. 
+    \end{itemize}
+\end{definition}
+
+\begin{definition}
+    En (liten) kategori er gitt av et diagram
+    \begin{tikzcd}
+        S_1 \arrow[r,shift left=.75ex, "s"] \arrow[r,shift right=.5ex, swap, "t"] & S_0
+    \end{tikzcd}
+    med en morfi $e:S_0 \longrightarrow S_1$ og komposisjon $c: S_1\times S_1 \longrightarrow S_1$ slik at følgende diagram kommuterer
+    
+    \begin{center}
+    \begin{tikzcd}
+        C_0 \arrow[r, "e"] \arrow[rd, "1"'] & C_1 \arrow[d, "t"] \\
+                                    & C_0               
+    \end{tikzcd}
+    \begin{tikzcd}
+        C_0 \arrow[r, "e"] \arrow[rd, "1"'] & C_1 \arrow[d, "s"] \\
+                                    & C_0               
+    \end{tikzcd}
+    
+    \begin{tikzcd}
+        C_1 \times C_1 \arrow[r, "c"] \arrow[d, "p_1"'] & C_1 \arrow[d, "s"] \\
+        C_1 \arrow[r, "s"']                             & C_0               
+    \end{tikzcd}
+    \begin{tikzcd}
+        C_1 \times C_1 \arrow[r, "c"] \arrow[d, "p_2"'] & C_1 \arrow[d, "t"] \\
+        C_1 \arrow[r, "t"']                             & C_0               
+    \end{tikzcd}
+    
+    \begin{tikzcd}
+        C_1 \times C_1\times C_1 \arrow[r, "c\times 1"] \arrow[d, "1\times c"'] & C_1\times C_1 \arrow[d, "c"] \\
+        C_1\times C_1 \arrow[r, "c"']                                           & C_1                         
+    \end{tikzcd}
+    
+    \begin{tikzcd}
+        C_0\times C_1 \arrow[r, "e\times 1"] \arrow[rd, "p_2"'] & C_1\times C_1 \arrow[d, "c"] & C_1\times C_0 \arrow[l, "1\times e"'] \arrow[ld, "p_1"] \\
+                                                        & C_1                          &
+    \end{tikzcd}
+    \end{center}
+
+\end{definition}    
+
+Her er $S_0$ samlingen av objekter mens $S_1$ er samlingen av morfier. 
+Denne prosessen danner i sin generelle form det som kalles en intern kategori. 
+Man må i det tilfellet bytte ut kartesisk produkt med fiberprodukt. 
+Dette kan defineres i mange tilfeller, men i dette tilfellet der den ambiente kategorien er $Set$ produseres små kategorier. 
+
+Den tredje er kanskje litt mer relevant for dette foredraget, men vi skal ikke se nærmere på den enda. 
+
+\begin{definition}
+    En kategori er en simplisiell mengde som tilfredsstiller nerveegenskapen. 
+\end{definition}
+
+
+\section{Generalisering}
+
+Så, hvorfor trenger vi generalisering? 
+Det første hintet kommer fra vanlig kategoriteori, i at isomorfi av kategorier virker til å være en alt for streng måte å snakke om at to kategorier er like på. 
+Man introduserer dermed naturlige transformasjoner og definerer det man kaller en ekvivalens av kategorier. 
+Denne definisjonen gir et mye mer nøyansert og ``riktig'' bilde på hva to like kategorier burde være. 
+Naturlige transformasjoner er morfier mellom funktorer, så vi innser at vi har ekstra struktur. 
+Kategorien av alle (små) kategorier danner altså noe som er mer enn en kategori, ettersom vi har morfier mellom morfiene våre. 
+Vi lærer så at funktorer mellom to kategorier og naturlige transformasjoner også danner en kategori, ofte kalt funktorkategorien. 
+Altså har vi da en kategori der alle mengdene av morfier også er kategorier. 
+Vi har altså ``en ekstra dimensjon''. 
+Vi ser dette ved å tegne diagrammer der naturlige transformasjoner tar opp 2-dimensjonal plass, istedenfor bare en linje. 
+Vi kaller denne strukturen en streng\footnote{Vi kommer straks tilbake til hvorfor vi bruker ordet streng i tillegg her.} 2-kategori, fordi høyeste dimensjon er 2.
+
+\begin{center}
+\begin{tikzcd}[column sep=1.5cm]
+A
+  \arrow[r, bend left=40, ""{name=v, below,}]  
+  \arrow[r, bend right=40,""{name=s, above,}] 
+  \arrow[from=v,to=s]
+& B
+\end{tikzcd}
+\end{center}
+
+Dette kan vi enkelt gjøre videre, og si at en streng 3-kategori er en kategori der morfiene mellom to objekter danner en streng 2-kategori, og ved å følge denne logikken kan vi enkelt lage strenge n-kategorier. 
+Et problem med dette er at det er ``mer av det samme''. 
+Vi har altså laget kategorier bare med ekstra trinn. 
+Det funker godt i visse tilfeller, men ikke i alle vi vil. 
+Et eksempel er i homotopiteori. 
+Vi kunne ønsket oss å lage en streng 2-kategori med topologiske rom som 0-celler, kontinuerlige funksjoner som 1-celler og homotopier mellom disse som 2-celler, men komposisjon av homotopier er ikke assosiativt, så mengden av kontinuerlige funksjoner mellom to topologiske rom og homotopier mellom de danner ikke en kategori. 
+Dermed danner hele strukturen ikke en streng 2-kategori. 
+Vi kan løse dette ved å se på homotopiklasser av homotopier istedenfor, noe som vil gjøre komposisjonen assosiativ. 
+For å gjøre dette må vi definere homotopier mellom homotopier, så vi kunne kanskje ønske oss at tilsammen så danner alle disse fire typene celler en streng 3-kategori, men vi får samme problem med assosiativiteten i den høyeste dimensjonen. 
+Vi må altså fortsette ut i det uendelige for å bli fornøyde. 
+
+En annen løsning er å fjerne ordet ``streng'' for å tillate disse operasjonene som ikke helt er assosiative. 
+Dette krever en del arbeid som vi skal se litt på.
+
+
+\subsection{Definisjoner}
+
+Den første tingen vi kanskje prøver er å gjøre akkuratt det samme vi gjorde for strenge 2-kategorier og se om vi klarer å gjøre definisjonen svakere. 
+Dette fører til at vi ikke kan la operasjonene være assosiative, men at vi krever en celle av dimensjon en over for å binde sammen de to ulike måtene å kombinere tre morfier på. 
+Denne tankegangen fører til det vi kaller bikategorier. 
+
+\begin{definition}{Bikategori}
+    En bikategori består av 
+    \begin{itemize}
+        \item En samling objekter, ofte kalt 0-celler
+        \item For hvert par av 0-celler en kategori $B(x, y)$ hvor objektene kalles 1-celler og morfiene for 2-celler
+        \item for hver 0-celle en 1-celle $1_x \in B(x,x)$ kalt identitets 1-cellen ved $x$. 
+        \item for hver trippel med 0-celler en funktor $C_{x,y,z}:B(x,y)\times B(y,z)\longrightarrow B(x,z)$ som sender par av 1-celler $(f, g)\mapsto g\circ f$, kalt horisontal komposisjon, og par av 2-celler $(\alpha, \beta ) \mapsto \beta \ast \alpha$ kalt vertikal komposisjon
+        \item for hver par av 0-celler har vi isomorfier $l:f\circ 1_x \cong f$ og $r:1_y\circ f\cong f$ kalt venstre og høyre unitor
+        \item for hver kvadruppel av 0-celler har vi en funktor $\alpha : B(x, y)\times B(y, z) \times B(z, w) \longrightarrow B(x, w)$ kalt assosiatoren
+    \end{itemize}
+    slik at følgende diagrammer kommuterer
+    
+    \begin{center}
+        \begin{tikzcd}
+            (g\circ 1_y) \circ f \arrow[rd, "r\ast 1_f"'] \arrow[rr, "\alpha"] &          & g\circ (1_y \circ f) \arrow[ld, "1_g\ast l"] \\
+                                                                   & g\circ f & 
+        \end{tikzcd}
+        
+        \begin{tikzcd}
+                                & ((ih)g)f \arrow[ld, "\alpha"'] \arrow[rr, "\alpha \ast id_f"] &          & (i(hg))f \arrow[rd, "\alpha"] &                                        \\
+            (ih)(gf) \arrow[rrd, "\alpha"'] &                                                               &          &                               & i((hg)f) \arrow[lld, "id_i\ast\alpha"] \\
+                                &                                                               & i(h(gf)) &                               &                                       
+        \end{tikzcd}
+    \end{center}
+    kalt triangel og pantagon identitenene respektivt. 
+\end{definition}
+
+Vi kan prøve å gjøre dette for høyere dimensjoner, og en tilsvarende fullstendig algebraisk definisjon eksisterer også for både trikategorier og tetrakategorier. 
+De blir dog mer og mer involverte, kompliserte og trenger større og flere diagrammer. 
+Det er en slags konsensus at det ikke er noe vits å skrive ut eksplisitt for $n>4$, da (hvertfall den første) eksplisitte definisjonen på tetrakategorier var \href{https://math.ucr.edu/home/baez/trimble/tetracategories.html}{51 sider lang}. 
+Den har blitt  \href{https://arxiv.org/abs/1112.0560}{formalisert og kortet litt ned på} men er fortsatt veldig tungvint å bruke. 
+Vi vil jo nå en generell n-kategori, og egentlig $\omega$-kategorier, så denne strategien funker ikke. 
+Det vi må gjøre er å introdusere det vi kaller modeller. 
+
+\subsection{Modeller}
+Modeller er objekter vi kan konstruere via teori vi allerede kjenner som oppfører seg slik vi ønsker at svake høyere kategorier skal oppføre seg. 
+Grunnet at det er mange veier til rom har dette skapt et landskap av ulike definisjoner som kan brukes i ulike tilfeller. 
+Krykken med dette er at man ikke vet om objektene er like, eller at de tilsvarer hverandre på en fin måte. 
+Mer eksplisitt vet vi ikke om de genererer ekvivalente kategorier. 
+
+Et mulig forsøk på å lage slike modeller kan gjøres ved å bruke spesielle typer mengder, slik som simplisielle mengder eller Opetopiske mengder. 
+Man kan også bruke monader eller operader. 
+De fleste er veldig tekniske og er langt utenfor hva vi skal gjennom i dag. 
+For å nevne noen navn man kan lese senere hvis man er interessert så kan man sjekke ut Segalrom, Segalkategorier, Globulære operader, multisimplisielle mengder eller Trimblekategorier.
+
+En av de mest brukte er såkalte svake komplisielle mengder, en konstruksjon av Ross Street. 
+Definisjonen bruker simplisielle mengder med ekstra struktur for å skape en modell for svake høyere kategorier helt opp til uendelig dimensjon. 
+Street bruker mye komplisert teori for å skape objekter som definerer svake kategorier av alle dimensjoner. 
+Dette krever mye tid, og mer enn jeg kan om teorien for å gjennomføres. 
+Men man kan altså gjøre dette opp til uendelig, noe som produserer det vi kaller complisielle $\omega$-kategorier. 
+
+For å gjøre det litt enklere for oss selv ser vi på den mest brukte definisjonen av en $\infty$-kategori, isteden for å bry oss om de veldig generelle svake høyere kategoriene. 
+Definisjonen vi skal se på er selvsagt kvasikategorier, og for å forstå definisjonen trenger vi først å forstå simplisielle mengder. 
+
+\section{Simplisielle mengder}
+
+\begin{definition}
+    Simplekskategorien $\Delta$ er kategorien bestående av totalt ordnede mengder med svakt ordensbevarende funksjoner som morfier. Objektene skrives ofte som $[n]=\{ 0,1,2,\ldots, n\}$. 
+\end{definition}
+
+\begin{definition}
+    En simplisiell mengde er en funktor $X:\Delta^{op}\longrightarrow Set$. Vi skriver som regel $X_n$ istedenfor $X([n])$.  
+\end{definition}
+
+Kategorien $\Delta$ er generert av to viktige klasser med morfier kalt sideavbildninger og degenerasjonsavbildninger. 
+Sideavbildningene defineres ved at det kun er en ordensbevarende injeksjon $[n-1]\longrightarrow [n]$ som ikke treffer tallet $i$. 
+Altså har vi for alle $n$ og for enhver $i$ en morfi $\delta_{n,i}:[n-1]\longrightarrow [n]$. 
+Bildet av denne morfien i en simplisiell mengde skrives $d_{n,i}:X_{n-1}\longrightarrow X_n$ og kalles den i'te sideavbildningen av $X_n$. 
+
+Tilsvarende er det kun en ordensbevarende surjeksjon $\sigma_{n,i}:[n]\longrightarrow [n-1]$ som tallet $i$ to ganger. 
+På lik måte definerer disse degenerasjonsavbildningene $s_{n,i}:X_n\longrightarrow X_{n-1}$ i en simplisiell mengde. 
+
+De kanskje enkleste simplisielle mengdene kalles det standard n-simplekset, $\Delta^n$. 
+Dette får vi ved funktoren $\Delta^n=[-, [n]]$. 
+Gjennom Yoneda lemmaet får vi at morfier $\Delta^n \longrightarrow \Delta^m$ korresponderer bijektivt til morfier $[n]\longrightarrow [m]$. 
+
+\begin{definition}
+    Det simplisielle hornet $\Lambda_k^n$ er unionen av alle de i'te sidene i $\Delta^n$ utenom den k'te. 
+    Mer generelt er et horn i X en avbildning $\Lambda_k^n\longrightarrow X$. 
+\end{definition}
+
+
+Vi minner oss selv på litt motivasjon for hva vi prøver å gjøre. 
+Vår motivasjon kommer fra eksemplet der ting gikk litt feil tidligere, nemlig topologiske rom. 
+Der hadde vi objekter, morfier og så homotopier av morfier. 
+Homotopi er en symmetrisk relasjon, og komposisjonen av en homotopi, og så homotopien baklengs er igjen homotopy til identitetshomotopien. 
+Så å gå homotopien baklengs fungerer som å ha en invers, hvertfall opp til homotopi. Denne nye høyere homotopien er igjen inverterbar opp til en ny homotopi etc.
+
+Så vi følger dette og ønsker oss en versjon at $\infty$-kategorier der alle k-cellene for $k\geq 2$ skal være inverterbare, eller hvertfall inverterbare opp til en inverterbar $k+1$-morfi. 
+Dette er det objektet vi ville frem til gjennom hele foredraget. 
+
+\section{Kvasikategorier}
+
+Endelig har vi kommet frem, og kan nå forstå definisjonen vi startet med, nemlig definisjonen av en kvasikategori. 
+
+\begin{definition}
+    En kvasikategori er en simplisiell mengde $X$ slik at alle indre horn har en fylling.
+\end{definition}
+
+Vi vet nå hva en simplisiell mengde $X$ er, og hva et horn i $X$ er. 
+Et indre horn betyr bare at vi kun ser på $\Lambda_k^n$m for $0<k<n$, alstå ikke ytterkantene. 
+At hornet har en fylling betyr at for et horn $\Lambda_k^n\longrightarrow X$ har vi en avbildning $\Delta_k^n\longrightarrow X$ slik at 
+\begin{center}
+    \begin{tikzcd}
+        \Lambda_k^n \arrow[r] \arrow[d, hook] & X \\
+        \Delta_k^n \arrow[ru, dotted]         &  
+    \end{tikzcd}
+\end{center}
+kommuterer. 
+
+Så hva betyr dette for oss når vi vil gjøre kategoriteori? 
+At vi baserer oss på simplisielle mengder gjør at vi allerede har valgt ut en mengde vi kaller objekter og en mengde morfier mellom de. 
+Hornene i den simplisielle mengden vår representerer komponerbare morfier, og fyllingsegenskapen sier at slik komposisjon eksisterer. 
+Dette blir veldig eksplisitt når vi lar $n=2$. Da har vi kun ett indre horn i $X$
+\begin{center}
+    \begin{tikzcd}
+        & x_1 \arrow[rd, "f"] &     \\
+        x_0 \arrow[ru, "g"] &                & x_2
+    \end{tikzcd}
+\end{center}
+som da representerer to morfier der kodomenet til den ene er domenet til den andre, altså det vi ville kalt komponerbare morfier i en kategori. 
+At en fylling eksisterer betyr at det finnes en tredje morfi 
+\begin{center}
+    \begin{tikzcd}
+        & x_1 \arrow[rd, "g"] &     \\
+        x_0 \arrow[ru, "f"] \arrow[rr] &                     & x_2
+    \end{tikzcd}
+\end{center}
+som fullfører diagrammet, altså at det eksisterer en morfi vi kan tenke på som komposisjonen av disse to komponerbare morfiene. 
+Denne trenger ikke være unik, så det kan eksistere mange ulike måter å komponere morfier, noe vi ønsket fra eksempelet med kategorien av topologiske rom som en høyere kategori tidligere. 
+
+Vi ser at det er smart å ikke ha med de ytre hornene, da foreksempel fyllingen av hornet 
+\begin{center}
+    \begin{tikzcd}
+                     & x_1 \arrow[rd, "g"] &     \\
+        x_2 \arrow[rr, "1"'] &                     & x_2
+    \end{tikzcd}
+\end{center}
+impliserer eksistens av inverser, noe vi ikke ønsker å kreve generelt. 
+
+For å hoppe tilbake til den definisjonen av en kategori vi ikke så på i starten, så er denne egenskapen vi krevde at alle indre horn har en unik fylling. 
+Altså er en kvasikategori der alle fyllingene er unike en måte å definere en (liten) kategori på! 
+Denne delen av teorien er også kul og inkluderer ting som nerver til kategorier og realiseringsfunktorer, men dette spares til en annen anledning.
